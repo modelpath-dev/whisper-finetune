@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Hugging Face / datasets caches
+.cache/
+*.lock
+
+# Training outputs & artifacts (keep the dir, ignore heavy contents)
+artifacts/*
+!artifacts/.gitkeep
+!artifacts/MODEL_CARD_TEMPLATE.md
+
+# Notebook checkpoints
+.ipynb_checkpoints/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
