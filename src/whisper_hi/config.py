@@ -84,6 +84,7 @@ class TrainConfig:
     report_to: str = "none"
     # 0 disables early stopping; >0 stops after N evals without WER improvement.
     early_stopping_patience: int = 0
+    max_grad_norm: float = 1.0
 
 
 @dataclass
