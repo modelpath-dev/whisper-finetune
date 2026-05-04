@@ -82,6 +82,8 @@ class TrainConfig:
     gradient_checkpointing: bool = True
     seed: int = 42
     report_to: str = "none"
+    # 0 disables early stopping; >0 stops after N evals without WER improvement.
+    early_stopping_patience: int = 0
 
 
 @dataclass

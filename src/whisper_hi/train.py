@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 
 from transformers import (
+    EarlyStoppingCallback,
     Seq2SeqTrainer,
     Seq2SeqTrainingArguments,
     set_seed,
@@ -85,6 +86,12 @@ def run_training(cfg: Config) -> dict:
         label_names=["labels"],
     )
 
+    callbacks = []
+    if cfg.train.early_stopping_patience > 0:
+        callbacks.append(
+            EarlyStoppingCallback(early_stopping_patience=cfg.train.early_stopping_patience)
+        )
+
     trainer = Seq2SeqTrainer(
         model=model,
         args=training_args,
@@ -93,6 +100,7 @@ def run_training(cfg: Config) -> dict:
         data_collator=collator,
         compute_metrics=compute_metrics,
         tokenizer=processor.feature_extractor,
+        callbacks=callbacks,
     )
     # use_cache is incompatible with gradient checkpointing during training.
     model.config.use_cache = False
