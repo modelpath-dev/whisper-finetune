@@ -69,6 +69,13 @@ def test_config_to_dict_is_nested():
     assert d["data"]["sampling_rate"] == 16_000
 
 
+def test_config_constructs_with_defaults():
+    cfg = Config()
+    assert cfg.train.early_stopping_patience == 0
+    assert cfg.train.max_grad_norm == 1.0
+    assert cfg.model.base_model == "openai/whisper-small"
+
+
 def test_config_rejects_invalid_lora_rank(tmp_path):
     bad = tmp_path / "bad.yaml"
     bad.write_text("model:\n  lora_r: 0\n", encoding="utf-8")
