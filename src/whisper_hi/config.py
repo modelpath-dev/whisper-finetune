@@ -48,6 +48,16 @@ class ModelConfig:
     lora_dropout: float = 0.05
     target_modules: list[str] = field(default_factory=lambda: ["q_proj", "v_proj"])
 
+    def __post_init__(self) -> None:
+        if self.lora_r <= 0:
+            raise ValueError(f"lora_r must be positive, got {self.lora_r}")
+        if self.lora_alpha <= 0:
+            raise ValueError(f"lora_alpha must be positive, got {self.lora_alpha}")
+        if not 0.0 <= self.lora_dropout < 1.0:
+            raise ValueError(f"lora_dropout must be in [0, 1), got {self.lora_dropout}")
+        if not self.target_modules:
+            raise ValueError("target_modules must list at least one module")
+
 
 @dataclass
 class TrainConfig:
