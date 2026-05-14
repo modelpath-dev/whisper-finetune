@@ -27,9 +27,17 @@ def main() -> None:
         action="store_true",
         help="Tiny dataset + few steps to validate the full pipeline quickly.",
     )
+    parser.add_argument(
+        "--seed",
+        type=int,
+        default=None,
+        help="Override the random seed from the config.",
+    )
     args = parser.parse_args()
 
     cfg = Config.from_yaml(args.config)
+    if args.seed is not None:
+        cfg.train.seed = args.seed
     if args.smoke:
         cfg.apply_smoke_overrides()
         print("[mode] SMOKE TEST — results are not meaningful, pipeline check only.")
