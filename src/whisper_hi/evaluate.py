@@ -76,6 +76,11 @@ def evaluate_models(cfg: Config, adapter_dir: str) -> dict:
     test_only = raw.__class__({"test": raw["test"]})
     prepared = prepare_datasets(test_only, processor, cfg)
     test_set = prepared["test"]
+    if len(test_set) == 0:
+        raise ValueError(
+            "Test split is empty after filtering — check the dataset config and "
+            "duration/transcript filters before evaluating."
+        )
     print(f"[eval] test examples: {len(test_set):,}")
 
     collator = DataCollatorSpeechSeq2SeqWithPadding(
