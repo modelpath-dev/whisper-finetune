@@ -1,5 +1,9 @@
 # Whisper-small Hindi ASR — LoRA Fine-tuning
 
+[![tests](https://github.com/modelpath-dev/whisper-finetune/actions/workflows/tests.yml/badge.svg)](https://github.com/modelpath-dev/whisper-finetune/actions/workflows/tests.yml)
+[![python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/)
+[![license: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+
 Fine-tune [OpenAI Whisper-small](https://huggingface.co/openai/whisper-small) for **Hindi
 automatic speech recognition** using **LoRA** (Low-Rank Adaptation via [PEFT](https://github.com/huggingface/peft))
 on the [Mozilla Common Voice 17](https://huggingface.co/datasets/mozilla-foundation/common_voice_17_0)
