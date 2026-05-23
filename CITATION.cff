@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "If you use this project, please cite it as below."
+title: "Whisper-small Hindi ASR — LoRA fine-tuning"
+abstract: "LoRA fine-tuning of OpenAI Whisper-small for Hindi automatic speech recognition on Common Voice 17."
+authors:
+  - name: "Chandan"
+version: "0.1.0"
+license: MIT
+repository-code: "https://github.com/modelpath-dev/whisper-finetune"
+keywords:
+  - whisper
+  - asr
+  - lora
+  - peft
+  - hindi
