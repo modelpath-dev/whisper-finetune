@@ -162,6 +162,29 @@ of truth, consumed identically by the scripts and the notebook.
 
 ---
 
+## Inference
+
+Transcribe a single audio file with a trained adapter:
+
+```bash
+python scripts/transcribe.py \
+    --config configs/whisper_small_hi.yaml \
+    --adapter artifacts/whisper-small-hi-lora \
+    --audio sample.wav
+```
+
+Or from Python:
+
+```python
+from whisper_hi.config import Config
+from whisper_hi.inference import transcribe_file
+
+cfg = Config.from_yaml("configs/whisper_small_hi.yaml")
+print(transcribe_file(cfg, "artifacts/whisper-small-hi-lora", "sample.wav"))
+```
+
+---
+
 ## Publishing
 
 1. Train + evaluate; copy `artifacts/MODEL_CARD_TEMPLATE.md` to your HF repo as `README.md`
