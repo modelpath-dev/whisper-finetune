@@ -61,6 +61,21 @@ def test_smoke_overrides_shrink_everything():
     assert cfg.train.fp16 is False
 
 
+def test_config_to_dict_is_nested():
+    cfg = Config.from_yaml(CONFIG_PATH)
+    d = cfg.to_dict()
+    assert set(d) == {"data", "model", "train", "hub"}
+    assert d["model"]["lora_r"] == 32
+    assert d["data"]["sampling_rate"] == 16_000
+
+
+def test_config_rejects_invalid_lora_rank(tmp_path):
+    bad = tmp_path / "bad.yaml"
+    bad.write_text("model:\n  lora_r: 0\n", encoding="utf-8")
+    with pytest.raises(ValueError, match="lora_r must be positive"):
+        Config.from_yaml(bad)
+
+
 # --------------------------------------------------------------------------- #
 # Text normalization
 # --------------------------------------------------------------------------- #
