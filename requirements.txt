@@ -1,0 +1,22 @@
+# Pinned dependencies for reproducibility.
+#
+# NOTE on torch: the pin below targets local development on Apple Silicon
+# (CPU/MPS smoke tests) and a generic Linux/CUDA box. Google Colab ships its
+# own CUDA-matched torch build pre-installed — do NOT reinstall torch on Colab,
+# just `pip install` the rest. See the Colab notebook for the exact cell.
+
+torch==2.4.1
+
+transformers==4.44.2
+peft==0.12.0
+datasets==2.21.0
+accelerate==0.33.0
+evaluate==0.4.2
+jiwer==3.0.4
+
+librosa==0.10.2
+soundfile==0.12.1
+
+matplotlib==3.9.2
+huggingface_hub==0.24.6
+PyYAML==6.0.2
