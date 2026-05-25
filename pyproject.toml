@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "whisper-hi-lora"
+version = "0.1.0"
+description = "LoRA fine-tuning of OpenAI Whisper-small for Hindi ASR on Common Voice 17."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "project-stormy" }]
+keywords = ["whisper", "asr", "lora", "peft", "hindi", "speech"]
+
+# Runtime dependencies are pinned in requirements.txt for reproducibility.
+# This list is intentionally loose so the package stays installable in editable
+# mode without fighting the exact pins.
+dependencies = [
+    "torch>=2.2",
+    "transformers>=4.44,<4.45",
+    "peft>=0.12,<0.13",
+    "datasets>=2.21,<2.22",
+    "accelerate>=0.33,<0.34",
+    "evaluate>=0.4.2",
+    "jiwer>=3.0",
+    "librosa>=0.10",
+    "soundfile>=0.12",
+    "matplotlib>=3.9",
+    "huggingface_hub>=0.24",
+    "PyYAML>=6.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
