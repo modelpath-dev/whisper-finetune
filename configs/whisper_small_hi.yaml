@@ -1,0 +1,55 @@
+# Configuration for LoRA fine-tuning Whisper-small on Common Voice 17 (Hindi).
+# Loaded by src/whisper_hi/config.py into typed dataclasses. Every field here
+# maps 1:1 to a dataclass attribute; unknown keys raise an error.
+
+data:
+  dataset_name: "mozilla-foundation/common_voice_17_0"
+  dataset_config: "hi"
+  train_split: "train"
+  eval_split: "validation"
+  test_split: "test"
+  text_column: "sentence"
+  audio_column: "audio"
+  sampling_rate: 16000
+  min_duration_s: 1.0
+  max_duration_s: 30.0
+  # null = use the whole split. Set small ints for quick experiments.
+  max_train_samples: null
+  max_eval_samples: null
+  max_test_samples: null
+  num_proc: 2
+
+model:
+  base_model: "openai/whisper-small"
+  language: "Hindi"
+  task: "transcribe"
+  lora_r: 32
+  lora_alpha: 64
+  lora_dropout: 0.05
+  target_modules: ["q_proj", "v_proj"]
+
+train:
+  output_dir: "artifacts/whisper-small-hi-lora"
+  per_device_train_batch_size: 16
+  per_device_eval_batch_size: 8
+  gradient_accumulation_steps: 1
+  learning_rate: 0.001          # 1e-3 — typical for LoRA adapters
+  warmup_steps: 50
+  num_train_epochs: 3.0
+  max_steps: -1                 # -1 = train by epochs; >0 overrides epochs
+  fp16: null                    # null = auto (fp16 only on CUDA/T4)
+  eval_strategy: "steps"
+  eval_steps: 200
+  save_steps: 200
+  logging_steps: 25
+  save_total_limit: 2
+  generation_max_length: 225
+  predict_with_generate: true
+  gradient_checkpointing: true
+  seed: 42
+  report_to: "none"             # no W&B/MLflow — keep deps tight
+
+hub:
+  push_to_hub: false
+  repo_id: null                 # e.g. "your-username/whisper-small-hi-lora"
+  private: false
