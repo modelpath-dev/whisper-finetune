@@ -1,4 +1,4 @@
-.PHONY: install dev test lint smoke train eval plot clean
+.PHONY: install dev test lint format smoke train eval plot clean
 
 CONFIG ?= configs/whisper_small_hi.yaml
 ADAPTER ?= artifacts/whisper-small-hi-lora
@@ -15,6 +15,10 @@ test:  ## Run fast offline unit tests
 
 lint:  ## Lint source, scripts, and tests with ruff
 	ruff check src scripts tests
+
+format:  ## Auto-format with ruff
+	ruff format src scripts tests
+	ruff check --fix src scripts tests
 
 smoke:  ## Run the full pipeline on a tiny subset (no GPU needed)
 	python scripts/prepare_data.py --config $(CONFIG) --smoke
