@@ -33,11 +33,18 @@ def main() -> None:
         default=None,
         help="Override the random seed from the config.",
     )
+    parser.add_argument(
+        "--output-dir",
+        default=None,
+        help="Override the output directory from the config.",
+    )
     args = parser.parse_args()
 
     cfg = Config.from_yaml(args.config)
     if args.seed is not None:
         cfg.train.seed = args.seed
+    if args.output_dir is not None:
+        cfg.train.output_dir = args.output_dir
     if args.smoke:
         cfg.apply_smoke_overrides()
         print("[mode] SMOKE TEST — results are not meaningful, pipeline check only.")
