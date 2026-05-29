@@ -62,6 +62,7 @@ def run_training(cfg: Config) -> dict:
         per_device_eval_batch_size=cfg.train.per_device_eval_batch_size,
         gradient_accumulation_steps=cfg.train.gradient_accumulation_steps,
         learning_rate=cfg.train.learning_rate,
+        max_grad_norm=cfg.train.max_grad_norm,
         warmup_steps=cfg.train.warmup_steps,
         num_train_epochs=cfg.train.num_train_epochs,
         max_steps=cfg.train.max_steps,
