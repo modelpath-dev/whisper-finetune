@@ -17,7 +17,7 @@ keywords = ["whisper", "asr", "lora", "peft", "hindi", "speech"]
 # mode without fighting the exact pins.
 dependencies = [
     "torch>=2.2",
-    "transformers>=4.44,<4.45",
+    "transformers>=4.44,<5.10",
     "peft>=0.12,<0.13",
     "datasets>=2.21,<2.22",
     "accelerate>=0.33,<0.34",
