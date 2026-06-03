@@ -20,19 +20,6 @@ The project is built to run two ways:
 
 ---
 
-## Results
-
-> Populated after a real training run from `artifacts/eval_results.json`. The numbers below
-> are placeholders showing the expected shape of the output.
-
-| Metric | Baseline whisper-small | LoRA fine-tuned | Relative ↓ |
-|-------:|:----------------------:|:---------------:|:----------:|
-| WER    | _e.g._ 68.x            | _e.g._ 38.x     | _~XX%_     |
-| CER    | _e.g._ 26.x            | _e.g._ 14.x     | _~XX%_     |
-
-![WER/CER comparison](artifacts/wer_cer_comparison.png)
-
----
 
 ## Project layout
 
